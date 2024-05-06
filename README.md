@@ -13,7 +13,7 @@ Deploy Linkwarden server with CI/CD on Elestio
 You can open Linkwarden ADMIN UI here:
 
     URL: https://[CI_CD_DOMAIN]/admin
-    email: root
+    email: admin
     password: [ADMIN_PASSWORD]
 
 You can open pgAdmin here:
