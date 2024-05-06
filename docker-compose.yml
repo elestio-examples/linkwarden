@@ -1,0 +1,35 @@
+version: "3.5"
+services:
+  postgres:
+    image: elestio/postgres:16
+    restart: always
+    env_file: ./.env
+    volumes:
+      - ./storage/pgdata:/var/lib/postgresql/data
+    ports:
+      - 172.17.0.1:33988:5432
+
+  linkwarden:
+    image: ghcr.io/linkwarden/linkwarden:latest
+    restart: always
+    env_file: ./.env
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+    ports:
+      - 172.17.0.1:33866:3000
+    volumes:
+      - ./storage/data:/data/data
+    depends_on:
+      - postgres
+
+pgadmin:
+  image: elestio/pgadmin:latest
+  restart: always
+  environment:
+    PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
+    PGADMIN_DEFAULT_PASSWORD: ${ADMIN_PASSWORD}
+    PGADMIN_LISTEN_PORT: 8080
+  ports:
+    - "172.17.0.1:35418:8080"
+  volumes:
+    - ./servers.json:/pgadmin4/servers.json
