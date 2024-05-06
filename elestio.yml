@@ -30,12 +30,6 @@ environments:
     value: "postgresql://postgres:random_password@postgres:5432/postgres"
   - key: "POSTGRES_PASSWORD"
     value: "random_password"
-  - key: "NEXT_PUBLIC_EMAIL_PROVIDER"
-    value: "true"
-  - key: "EMAIL_FROM"
-    value: "[DOMAIN]@vm.elestio.app"
-  - key: "EMAIL_SERVER"
-    value: "smtp://172.17.0.1:25/?skip_ssl_verify=true&legacy_ssl=false&smtp_ssl_enabled=false&disable_starttls=true"
 
 config:
   runTime: "dockerCompose"
